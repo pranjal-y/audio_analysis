@@ -9,8 +9,11 @@ import os
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'TRUE'
 
 
-# Set your OpenAI API key
-openai.api_key = "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"
+# Access the API key from the environment variable
+api_key = os.getenv("OPENAI_API_KEY")
+
+# Set the API key for the OpenAI library
+openai.api_key = api_key
 
 # Title
 st.title("Audio Transcribing and Analysis")
