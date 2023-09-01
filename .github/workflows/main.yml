@@ -33,4 +33,4 @@ jobs:
           # Fetch LFS objects
           git lfs fetch
           # Push to the hub
-          git push --force https://Pranjal-y:$HF_TOKEN@huggingface.co/spaces/Pranjal-y/Audio_transcribe_analysis main
+          git push https://Pranjal-y:$HF_TOKEN@huggingface.co/spaces/Pranjal-y/Audio_transcribe_analysis main
