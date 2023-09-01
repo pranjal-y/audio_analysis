@@ -21,6 +21,6 @@ jobs:
       - name: Set up environment
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: git push --force https://Pranjal-y:$HF_TOKEN@huggingface.co/spaces/Pranjal-y/Audio_transcribe_analysis main
+        run: git push --force https://Pranjal-y:$OPENAI_API_KEY@huggingface.co/spaces/Pranjal-y/Audio_transcribe_analysis main
 
           # Your workflow steps here, using the OPENAI_API_KEY environment variable
