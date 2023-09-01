@@ -2,20 +2,35 @@ name: Sync to Hugging Face hub
 on:
   push:
     branches: [main]
-
-  # to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
   sync-to-hub:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code with LFS
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           lfs: true
+
+      - name: Install Git LFS
+        run: |
+          # Install Git LFS
+          curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+          sudo apt-get install git-lfs -y
+          git lfs install
       - name: Push to hub
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-        run: git push --force https://Pranjal-y:$HF_TOKEN@huggingface.co/spaces/Pranjal-y/Audio_transcribe_analysis main
-
+        run: |
+          # Configure Git LFS in the environment
+          export GIT_LFS_SKIP_SMUDGE=1
+          # Clone the repository using Git LFS
+          git clone https://Pranjal-y:$HF_TOKEN@huggingface.co/spaces/Pranjal-y/Audio_transcribe_analysis repo
+          # Move into the repository directory
+          cd repo
+          # Fetch LFS objects
+          git lfs fetch
+          # Push to the hub
+          git push --force https://Pranjal-y:$HF_TOKEN@huggingface.co/spaces/Pranjal-y/Audio_transcribe_analysis main
